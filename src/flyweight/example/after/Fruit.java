@@ -71,7 +71,7 @@ class FruitShared {
 
     // Get existing value or create one and cache it
     public static FruitShared make(String name, Color color) {
-        return FruitShareCache.getInstance().intern(name, color);
+        return FruitFactory.getInstance().intern(name, color);
     }
 
     // Needs hashCode to be cached
@@ -95,8 +95,8 @@ class FruitShared {
     }
 }
 
-class FruitShareCache {
-    private static FruitShareCache instance = new FruitShareCache();
+class FruitFactory {
+    private static FruitFactory instance = new FruitFactory();
     private Map<Integer, FruitShared> cache = new HashMap<>();
 
     public FruitShared intern(String name, Color color) {
@@ -108,7 +108,7 @@ class FruitShareCache {
         return cache.get(hash);
     }
 
-    public static FruitShareCache getInstance() {
+    public static FruitFactory getInstance() {
         return instance;
     }
 }
